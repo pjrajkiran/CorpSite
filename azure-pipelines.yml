@@ -21,8 +21,13 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-    - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
-      artifact: Globex-web
+    - task: PublishPipelineArtifact@1
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'Test'
+        publishLocation: 'pipeline'
+    # - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
+    #   artifact: Globex-web
 - stage: UAT_deploy
   jobs:
   - deployment: DeployUAT
