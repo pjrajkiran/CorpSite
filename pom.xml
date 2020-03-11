@@ -99,5 +99,28 @@
 
         </plugins>
     </build>
-
+    <repositories>
+         <repository>
+                  <id>rajkiranp</id>
+                  <url>https://pkgs.dev.azure.com/rajkiranp/_packaging/rajkiranp/maven/v1</url>
+                  <releases>
+                           <enabled>true</enabled>
+                  </releases>
+                  <snapshots>
+                           <enabled>true</enabled>
+                  </snapshots>
+         </repository> 
+    </repositories>   
+     <distributionManagement>
+         <repository>
+                  <id>rajkiranp</id>
+                  <url>https://pkgs.dev.azure.com/rajkiranp/_packaging/rajkiranp/maven/v1</url>
+                  <releases>
+                           <enabled>true</enabled>
+                  </releases>
+                  <snapshots>
+                           <enabled>true</enabled>
+                  </snapshots>
+         </repository> 
+    </distributionManagement>       
 </project>
