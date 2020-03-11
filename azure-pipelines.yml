@@ -21,6 +21,10 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'deploy'
     # - task: PublishBuildArtifacts@1
     #   inputs:
     #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
