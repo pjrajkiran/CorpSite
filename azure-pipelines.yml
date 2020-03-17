@@ -11,7 +11,7 @@ stages:
   jobs:
   - job: Build
     steps:
-    - task: ServiceNow DevOps Agent Job Notification@2
+    - task: ServiceNow-DevOps-Agent-Job-Notification@2
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
         Phase: 'STARTED'
@@ -41,19 +41,11 @@ stages:
     #     publishLocation: 'pipeline'
     - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
       artifact: Globex-web
-    - task: ServiceNow-DevOps-Artifact-Registration@1
+    - task: ServiceNow-DevOps-Artifact-Registration@2
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
-        artifactsPayload: |
-          "artifacts": [
-           {
-           "name": "globex-web.war",
-           "version": "1.0",
-           "semanticVersion": "1.0.0",
-           "repositoryName": "Test"
-           }
-           ]
-    - task: ServiceNow DevOps Agent Job Notification@2
+        artifactsPayload: '''artifacts'': [{''name'': ''globex-web.war'',''version'': ''1.0'',''semanticVersion'': ''1.0.0'',''repositoryName'': ''test''}]'
+    - task: ServiceNow-DevOps-Agent-Job-Notification@2
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
         Phase: 'COMPLETED'
@@ -68,13 +60,13 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: ServiceNow DevOps Agent Job Notification@2
+          - task: ServiceNow-DevOps-Agent-Job-Notification@2
             inputs:
               connectedServiceName: 'Servicenow IDC 2 creds'
               upstream: 'Build'
               Phase: 'STARTED'
           - script: echo my first deployment
-          - task: ServiceNow DevOps Agent Job Notification@2
+          - task: ServiceNow-DevOps-Agent-Job-Notification@2
             inputs:
               connectedServiceName: 'Servicenow IDC 2 creds'
               upstream: 'Build'
@@ -90,13 +82,13 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: ServiceNow DevOps Agent Job Notification@2
+          - task: ServiceNow-DevOps-Agent-Job-Notification@2
             inputs:
               connectedServiceName: 'Servicenow IDC 2 creds'
               upstream: 'UAT'
               Phase: 'STARTED'
           - script: echo my first deployment
-          - task: ServiceNow DevOps Agent Job Notification@2
+          - task: ServiceNow-DevOps-Agent-Job-Notification@2
             inputs:
               connectedServiceName: 'Servicenow IDC 2 creds'
               upstream: 'UAT'
