@@ -18,14 +18,18 @@ stages:
     - task: ServiceNow-DevOps-Artifact-Registration@4
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
+        
+    - task: ServiceNow-DevOps-Artifact-Registration@5
+      inputs:
+        connectedServiceName: 'Servicenow IDC 2 creds'
         artifactsPayload: |
           {
           "artifacts": [
            {
-           "name": "sa-web-1.jar",
-           "version": "3.1",
-           "semanticVersion": "3.1.1",
-           "repositoryName": "services-1031"
+           "name": "globex-web.war",
+           "version": "1.0",
+           "semanticVersion": "1.0.0",
+           "repositoryName": "Test"
            }
            ]
           }
