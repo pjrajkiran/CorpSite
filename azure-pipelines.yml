@@ -50,7 +50,7 @@ stages:
            "name": "globex-web.war",
            "version": "1.0",
            "semanticVersion": "1.0.0",
-           "repositoryName": "test"
+           "repositoryName": "Test"
            }
            ]
     - task: ServiceNow DevOps Agent Job Notification@2
