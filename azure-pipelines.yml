@@ -33,10 +33,10 @@ stages:
         artifactsPayload: |
           {
           "artifacts":[{
-          "name":"test.jar",
-          "version":"1.0",
-          "semanticVersion":"1.0.0",
-          "repositoryName":"Test"
+          "name":"globex-web.war",
+          "version":"1.1",
+          "semanticVersion":"1.1.0",
+          "repositoryName":"Globex-web"
           }]}
     - task: ServiceNow-DevOps-Agent-Job-Notification@2
       inputs:
