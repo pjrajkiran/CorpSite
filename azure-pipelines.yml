@@ -9,8 +9,12 @@ pool:
 stages:
 - stage: CI
   jobs:
-  - job: BuildJob
+  - job: Build
     steps:
+    - task: ServiceNow DevOps Agent Job Notification@2
+      inputs:
+        connectedServiceName: 'Servicenow IDC 2 creds'
+        Phase: 'STARTED'
     - task: Maven@3
       inputs:
         mavenPomFile: 'pom.xml'
@@ -37,10 +41,26 @@ stages:
     #     publishLocation: 'pipeline'
     - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
       artifact: Globex-web
+    - task: ServiceNow-DevOps-Artifact-Registration@1
+      inputs:
+        connectedServiceName: 'Servicenow IDC 2 creds'
+        artifactsPayload: |
+          "artifacts": [
+           {
+           "name": "globex-web.war",
+           "version": "1.0",
+           "semanticVersion": "1.0.0",
+           "repositoryName": "test"
+           }
+           ]
+    - task: ServiceNow DevOps Agent Job Notification@2
+      inputs:
+        connectedServiceName: 'Servicenow IDC 2 creds'
+        Phase: 'COMPLETED'
 - stage: UAT_deploy
   jobs:
   - deployment: DeployUAT
-    displayName: Deploy to UAT
+    displayName: UAT
     pool:
       vmImage: 'Ubuntu-16.04'
     environment: 'UAT'
@@ -48,11 +68,21 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: ServiceNow DevOps Agent Job Notification@2
+            inputs:
+              connectedServiceName: 'Servicenow IDC 2 creds'
+              upstream: 'Build'
+              Phase: 'STARTED'
           - script: echo my first deployment
+          - task: ServiceNow DevOps Agent Job Notification@2
+            inputs:
+              connectedServiceName: 'Servicenow IDC 2 creds'
+              upstream: 'Build'
+              Phase: 'COMPLETED'
 - stage: UAT_test
   jobs:
   - deployment: DeployUAT
-    displayName: Deploy to UAT
+    displayName: UAT Test
     pool:
       vmImage: 'Ubuntu-16.04'
     environment: 'UAT'
@@ -60,4 +90,14 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: ServiceNow DevOps Agent Job Notification@2
+            inputs:
+              connectedServiceName: 'Servicenow IDC 2 creds'
+              upstream: 'UAT'
+              Phase: 'STARTED'
           - script: echo my first deployment
+          - task: ServiceNow DevOps Agent Job Notification@2
+            inputs:
+              connectedServiceName: 'Servicenow IDC 2 creds'
+              upstream: 'UAT'
+              Phase: 'COMPLETED'
