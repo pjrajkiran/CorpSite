@@ -15,10 +15,6 @@ stages:
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
         Phase: 'STARTED'
-    - task: ServiceNow-DevOps-Artifact-Registration@4
-      inputs:
-        connectedServiceName: 'Servicenow IDC 2 creds'
-        
     - task: ServiceNow-DevOps-Artifact-Registration@5
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
