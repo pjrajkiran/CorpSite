@@ -22,9 +22,9 @@ stages:
           {
           "artifacts": [
            {
-           "name": "sa-web.jar",
+           "name": "sa-web-1.jar",
            "version": "3.1",
-           "semanticVersion": "3.1.0",
+           "semanticVersion": "3.1.1",
            "repositoryName": "services-1031"
            }
            ]
