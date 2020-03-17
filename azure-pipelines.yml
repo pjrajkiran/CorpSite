@@ -41,7 +41,7 @@ stages:
     #     publishLocation: 'pipeline'
     - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
       artifact: Globex-web
-    - task: ServiceNow-DevOps-Artifact-Registration@2
+    - task: ServiceNow-DevOps-Artifact-Registration@3
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
         artifactsPayload: '''artifacts'': [{''name'': ''globex-web.war'',''version'': ''1.0'',''semanticVersion'': ''1.0.0'',''repositoryName'': ''test''}]'
