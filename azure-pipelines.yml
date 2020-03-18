@@ -27,16 +27,16 @@ stages:
         goals: 'package'
     - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
       artifact: Globex-web
-    - task: ServiceNow-DevOps-Artifact-Registration@12
+    - task: ServiceNow-DevOps-Artifact-Registration@13
       inputs:
         connectedServiceName: 'Servicenow IDC 2 creds'
         artifactsPayload: |
           {
           "artifacts":[{
-          "name":"test-12.jar",
+          "name":"test-13.jar",
           "version":"1.0",
           "semanticVersion":"1.0.0",
-          "repositoryName":"Test-12"
+          "repositoryName":"Test13"
           }]}
     - task: ServiceNow-DevOps-Agent-Job-Notification@2
       inputs:
