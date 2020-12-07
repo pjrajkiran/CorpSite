@@ -11,16 +11,13 @@ stages:
   jobs:
   - job: Build
     steps:
-    - task: Maven@3
+    - task: Bash@3
       inputs:
-        mavenPomFile: 'pom.xml'
-        mavenOptions: '-Xmx3072m'
-        javaHomeOption: 'JDKVersion'
-        jdkVersionOption: '1.8'
-        jdkArchitectureOption: 'x64'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
-        goals: 'package'
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          
+          echo 'Hello build world'
 - stage: UAT_deploy
   jobs: 
   - job: UAT
@@ -31,7 +28,7 @@ stages:
           script: |
             # Write your commands here
       
-            echo 'Hello world'
+            echo 'Hello deploy world'
     
 - stage: UAT_test
   jobs: 
@@ -43,4 +40,4 @@ stages:
           script: |
             # Write your commands here
       
-            echo 'Hello world'
+            echo 'Hello test world'
