@@ -21,19 +21,26 @@ stages:
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         goals: 'package'
-    - publish: $(System.DefaultWorkingDirectory)/target/globex-web.war
-      artifact: Globex-web
 - stage: UAT_deploy
-  jobs:
-  - deployment: DeployUAT
-    displayName: UAT
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'UAT'
+  jobs: 
+  - job: UAT
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+      
+            echo 'Hello world'
+    
 - stage: UAT_test
-  jobs:
-  - deployment: DeployUAT
-    displayName: UAT Test
-    pool:
-      vmImage: 'Ubuntu-16.04'
-    environment: 'UAT'
+  jobs: 
+  - job: UAT_TEST
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+      
+            echo 'Hello world'
